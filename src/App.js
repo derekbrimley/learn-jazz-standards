@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+
+// Components
+import Header from './components/Layout/Header';
+import Dashboard from './components/Dashboard/Dashboard';
+import StandardPage from './components/StandardPage/StandardPage';
+import WeekPlanner from './components/WeekPlanner/WeekPlanner';
+import AudioPlayer from './components/AudioPlayer/AudioPlayer';
+
+// Styles
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/standard/:id" element={<StandardPage />} />
+              <Route path="/week-planner" element={<WeekPlanner />} />
+            </Routes>
+          </main>
+
+          <AudioPlayer />
+        </div>
+      </Router>
+    </AppProvider>
   );
 }
 
