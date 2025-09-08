@@ -42,6 +42,7 @@ const StandardPage = () => {
     lastPracticed: null
   };
 
+
   useEffect(() => {
     if (!standard) {
       navigate('/dashboard');
@@ -280,16 +281,16 @@ const StandardPage = () => {
               <h3>Practice Checklist</h3>
               <div className="checklist-items">
                 {PRACTICE_CHECKLIST_ITEMS.map((item) => (
-                  <div key={item} className="checklist-item">
+                  <div key={item.id} className="checklist-item">
                     <button
-                      className={`checkbox ${progress.checklist[item] ? 'checked' : ''}`}
-                      onClick={() => handleChecklistToggle(item)}
+                      className={`checkbox ${progress.checklist[item.id] ? 'checked' : ''}`}
+                      onClick={() => handleChecklistToggle(item.id)}
                     >
                       <FontAwesomeIcon 
-                        icon={progress.checklist[item] ? faCheckCircle : faCircle} 
+                        icon={progress.checklist[item.id] ? faCheckCircle : faCircle} 
                       />
                     </button>
-                    <span className="item-text">{item}</span>
+                    <span className="item-text">{item.label}</span>
                   </div>
                 ))}
               </div>
