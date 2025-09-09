@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import { AppProvider } from './context/AppContext';
 
 // Components
@@ -14,24 +15,26 @@ import './App.css';
 
 function App() {
   return (
-    <AppProvider>
-      <Router>
-        <div className="App">
-          <Header />
-          
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/standard/:id" element={<StandardPage />} />
-              <Route path="/week-planner" element={<WeekPlanner />} />
-            </Routes>
-          </main>
+    <AuthProvider>
+      <AppProvider>
+        <Router>
+          <div className="App">
+            <Header />
+            
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/standard/:id" element={<StandardPage />} />
+                <Route path="/week-planner" element={<WeekPlanner />} />
+              </Routes>
+            </main>
 
-          <AudioPlayer />
-        </div>
-      </Router>
-    </AppProvider>
+            <AudioPlayer />
+          </div>
+        </Router>
+      </AppProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faMusic, 
   faHome, 
   faCalendarWeek, 
-  faShuffle
+  faShuffle,
+  faUser,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { useApp } from '../../context/AppContext';
+import { useAuth } from '../../context/AuthContext';
+import AuthModal from '../Auth/AuthModal';
 import './Header.css';
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { actions } = useApp();
+  const { currentUser, isAuthenticated, signOut } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const isActive = (path) => {
     if (path === '/' || path === '/dashboard') {
@@ -25,6 +31,21 @@ const Header = () => {
   const handleRandomStandard = () => {
     const randomStandard = actions.getRandomStandard();
     navigate(`/standard/${randomStandard.id}`);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
+  const getUserDisplayName = () => {
+    if (!currentUser) return '';
+    return currentUser.displayName || 
+           currentUser.email || 
+           (currentUser.isAnonymous ? 'Guest' : 'User');
   };
 
   return (
@@ -59,7 +80,33 @@ const Header = () => {
           >
             <FontAwesomeIcon icon={faShuffle} />
           </button>
+
+          {isAuthenticated ? (
+            <div className="user-menu">
+              <span className="user-name">{getUserDisplayName()}</span>
+              <button 
+                className="nav-btn"
+                onClick={handleSignOut}
+                title="Sign Out"
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </button>
+            </div>
+          ) : (
+            <button 
+              className="nav-btn auth-btn"
+              onClick={() => setShowAuthModal(true)}
+              title="Sign In"
+            >
+              <FontAwesomeIcon icon={faUser} />
+            </button>
+          )}
         </div>
+
+        <AuthModal 
+          isOpen={showAuthModal} 
+          onClose={() => setShowAuthModal(false)} 
+        />
       </nav>
     </header>
   );

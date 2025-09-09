@@ -8,7 +8,7 @@ export const JAZZ_STANDARDS = [
         key: 'Bb',
         timeSignature: '4/4',
         difficulty: 'intermediate',
-        chordProgression: 'BbM7 | Gm7 C7 | Fm7 Bb7 | EbM7 | Am7b5 D7 | Gm7 | C7sus4 C7 | Fm7 Bb7 |',
+        chordProgression: 'BbM7 | Ebm7/Bb | BbM7 | Ebm7/Bb | BbM7 | Am7b5 | D7#9 | Gm7 | D7#5 | Gm7 | D7#5 | Gm7 | C9 | F7 | F7 | BbM7 | Ebm7/Bb | BbM7 | Ebm7/Bb | BbM7 | D7 | EbM7 |Ab9 | Cm7b5 | Bb/F | Gb6 | Gm7 | C9 | F7 | F7 | F7 | F7 | BbM7 | Eb7 | BbM7',
         style: 'ballad'
     },
     {

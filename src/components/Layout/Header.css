@@ -38,7 +38,35 @@
 
 .nav-controls {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.user-name {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.auth-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 
 .nav-btn {

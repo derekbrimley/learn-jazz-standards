@@ -118,6 +118,24 @@ const StandardPage = () => {
     }
   };
 
+  const formatChordProgression = (progression) => {
+    if (!progression) return null;
+    
+    // Split by pipes and format each measure
+    const measures = progression.split('|').map(measure => measure.trim()).filter(measure => measure);
+    
+    return (
+      <div className="chord-measures">
+        {measures.map((measure, index) => (
+          <span key={index} className="chord-measure">
+            {measure}
+            {index < measures.length - 1 && <span className="measure-separator">|</span>}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   const completedItems = Object.values(progress.checklist).filter(Boolean).length;
   const progressPercentage = Math.round((completedItems / PRACTICE_CHECKLIST_ITEMS.length) * 100);
 
@@ -255,7 +273,7 @@ const StandardPage = () => {
                 <div className="chord-display">
                   {standard.chordProgression ? (
                     <div className="chord-progression">
-                      {standard.chordProgression}
+                      {formatChordProgression(standard.chordProgression)}
                     </div>
                   ) : (
                     <p className="no-data">Chord progression not available</p>

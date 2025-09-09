@@ -234,7 +234,6 @@
 }
 
 .chord-display {
-  background: #F8F9FA;
   border-radius: 8px;
   padding: 20px;
 }
@@ -244,6 +243,42 @@
   font-size: 1.1rem;
   line-height: 1.6;
   color: #2D5A87;
+}
+
+.chord-measures {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 2.2;
+}
+
+.chord-measure {
+  display: inline-flex;
+  align-items: center;
+  min-width: 120px;
+  padding: 8px 12px;
+  background: white;
+  border-left: 1px solid black;
+  /* border-right: 1px solid black; */
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+.chord-measure:nth-child(4n) {
+  margin-right: 0;
+}
+
+.chord-measure:nth-child(4n+1) {
+  margin-left: 0;
+}
+
+.measure-separator {
+  display: none;
 }
 
 .lyrics-display {
